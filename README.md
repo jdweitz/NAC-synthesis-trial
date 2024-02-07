@@ -17,3 +17,17 @@ Run `run.py` to load in the model, convert to hls, specify the config, and synth
 Still seems to freeze here:
 
 `INFO: [HLS 200-489] Unrolling loop 'ResultLoop' (firmware/nnet_utils/nnet_conv2d_resource.h:96) in function 'nnet::conv_2d_cl<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' completely with a factor of 32`
+
+## Note
+
+I added this:
+```
+# Set io_type to 'io_stream' for the entire model
+config['Model']['IOType'] = 'io_stream'
+
+# Set strategy to 'Resource' for the entire model
+config['Model']['Strategy'] = 'Resource'
+
+# Set reuse factor to 32 for the entire model
+config['Model']['ReuseFactor'] = 4 # changed from 32 to 4, crashed with 32
+```
