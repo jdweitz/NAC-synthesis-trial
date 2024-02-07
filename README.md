@@ -52,4 +52,5 @@ INFO: [XFORM 203-101] Partitioning array 'layer17_out.V' (firmware/myproject.cpp
 `
 WARNING: [XFORM 203-104] Completely partitioning array 'layer17_out.V' (firmware/myproject.cpp:101) accessed through non-constant indices on dimension 1 (firmware/nnet_utils/nnet_array.h:43:17), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead.
 `
-It seems to take ~ 4min to completely partition each array.
+
+Some take >10min to completely partition each array.
