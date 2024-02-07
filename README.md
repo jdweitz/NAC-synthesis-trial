@@ -40,3 +40,14 @@ Mean Distance:  0.40206024
 Unrolling here takes ~ 20min
 
 `INFO: [HLS 200-489] Unrolling loop 'ResultLoop' (firmware/nnet_utils/nnet_conv2d_resource.h:96) in function 'nnet::conv_2d_cl<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' completely with a factor of 32`
+
+## Note 3
+
+Had this happen with 30 different arrays:
+
+```
+INFO: [XFORM 203-101] Partitioning array 'layer17_out.V' (firmware/myproject.cpp:101) in dimension 1 completely.
+```
+```
+WARNING: [XFORM 203-104] Completely partitioning array 'layer17_out.V' (firmware/myproject.cpp:101) accessed through non-constant indices on dimension 1 (firmware/nnet_utils/nnet_array.h:43:17), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead.
+```
