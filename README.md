@@ -37,6 +37,6 @@ Mean Distance:  0.40206024
 
 ## Note 2
 
-Unrolling here for ~ 20min
+Unrolling here takes ~ 20min
 
 `INFO: [HLS 200-489] Unrolling loop 'ResultLoop' (firmware/nnet_utils/nnet_conv2d_resource.h:96) in function 'nnet::conv_2d_cl<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' completely with a factor of 32`
