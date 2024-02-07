@@ -10,6 +10,6 @@ Change -maximum_size to any value greater than 4608 from the 4096 that is curren
 
 Check the path of the file `model_weights_300_epochs.pth`.
 
-Run `load_torch_model_convert_synthesize.py` to load in the model, convert to hls, specify parameters, and synthesize.
+Run `run.py` to load in the model, convert to hls, specify parameters, and synthesize.
 
 Open the Vivado report in the specified path.
