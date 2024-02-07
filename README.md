@@ -12,15 +12,9 @@ Check the path of the file `model_weights_300_epochs.pth` with respect to the de
 
 Run `run.py` to load in the model, convert to hls, specify the config, and synthesize.
 
-## Error
+## Note 1
 
-Still seems to freeze here:
-
-`INFO: [HLS 200-489] Unrolling loop 'ResultLoop' (firmware/nnet_utils/nnet_conv2d_resource.h:96) in function 'nnet::conv_2d_cl<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' completely with a factor of 32`
-
-## Note
-
-I added this:
+I added this to `run.py`:
 ```
 # Set io_type to 'io_stream' for the entire model
 config['Model']['IOType'] = 'io_stream'
@@ -31,3 +25,11 @@ config['Model']['Strategy'] = 'Resource'
 # Set reuse factor to 32 for the entire model
 config['Model']['ReuseFactor'] = 4 # changed from 32 to 4, crashed with 32
 ```
+The crash occurred when evaluating the the hls model (separate from files in this repo, as it requires loading in the data), so I changed to 4 and it evaluated with only this note:
+`WARNING: Invalid ReuseFactor=4 in layer "conv1".Using ReuseFactor=3 instead. Valid ReuseFactor(s): 1,3,9,18,36,72,144,288.` which is an easy fix.
+
+## Note 2
+
+Unrolling here for ~ 20min
+
+`INFO: [HLS 200-489] Unrolling loop 'ResultLoop' (firmware/nnet_utils/nnet_conv2d_resource.h:96) in function 'nnet::conv_2d_cl<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' completely with a factor of 32`
