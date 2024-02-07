@@ -4,8 +4,6 @@ Draft process to synthesize a PyTorch model, using hls4ml & Vivado.
 
 ## Procedure
 
-Install hls4ml.
-
 Change `-maximum_size` to any value greater than 4608 from the 4096 that is currently in place, [here](https://github.com/fastmachinelearning/hls4ml/blob/main/hls4ml/templates/vivado/build_prj.tcl#L164), at your respective file (I doubled it to 8192).
 
 Check the path of the file `model_weights_300_epochs.pth` with respect to the defined path in `run.py`.
@@ -43,7 +41,7 @@ Unrolling here takes ~ 20min (this was the previous error-causing layer 4608 > 4
 
 ## Note 3
 
-Had this happen with 30 different arrays:
+Had this happen with 10 different arrays:
 
 `
 INFO: [XFORM 203-101] Partitioning array 'layer17_out.V' (firmware/myproject.cpp:101) in dimension 1 completely.
