@@ -26,7 +26,11 @@ config['Model']['Strategy'] = 'Resource'
 config['Model']['ReuseFactor'] = 4 # changed from 32 to 4, crashed with 32
 ```
 The crash occurred when evaluating the the hls model (separate from files in this repo, as it requires loading in the data), so I changed to 4 and it evaluated with only this note:
-`WARNING: Invalid ReuseFactor=4 in layer "conv1".Using ReuseFactor=3 instead. Valid ReuseFactor(s): 1,3,9,18,36,72,144,288.` which is an easy fix.
+`WARNING: Invalid ReuseFactor=4 in layer "conv1".Using ReuseFactor=3 instead. Valid ReuseFactor(s): 1,3,9,18,36,72,144,288.` which is no issue. Also, got a much smaller discrepancy with these parameters:
+```
+HLS Mean Distance:  0.39590603
+Mean Distance:  0.40206024
+```
 
 ## Note 2
 
