@@ -1,0 +1,16 @@
+name: hls4ml-dev
+channels:
+  - pytorch
+  - conda-forge
+
+dependencies:
+  - python=3.10.*
+  - pip
+  - pytorch
+  - torchvision
+  - torchaudio
+  - cpuonly
+  - tensorflow
+  - pip:
+      - hls4ml[profiling]==0.8.1
+      - qkeras==0.9.0
