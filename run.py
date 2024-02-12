@@ -65,7 +65,7 @@ model.load_state_dict(torch.load(model_weights_path, map_location=torch.device('
 model.eval()
 
 # Generate initial configuration
-config = hls4ml.utils.config_from_pytorch_model(model, granularity='model')
+config = hls4ml.utils.config_from_pytorch_model(model, granularity='model')  # name is not working properly
 
 # Set io_type to 'io_stream' for the entire model
 config['Model']['IOType'] = 'io_stream'
@@ -74,7 +74,7 @@ config['Model']['IOType'] = 'io_stream'
 config['Model']['Strategy'] = 'Resource'
 
 # Set reuse factor to 32 for the entire model
-config['Model']['ReuseFactor'] = 4 # changed from 32 to 4, crashed with 32
+config['Model']['ReuseFactor'] = 8 # changed from 32 to 8, crashed with 32
 
 # Print the modified configuration
 print("-----------------------------------")
