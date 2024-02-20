@@ -47,7 +47,7 @@ model.summary()
 model.compile()
 
 # Generate initial configuration
-config = hls4ml.utils.config_from_keras_model(model, granularity='model') # trying model that was made here (tf_model), instead of the loaded in one (loaded_tf_model)
+config = hls4ml.utils.config_from_keras_model(model, granularity='model')
 
 # Now, manually adjust the generated configuration
 # Since the granularity is set to 'model', these settings will apply model-wide
@@ -59,7 +59,7 @@ config['Model']['IOType'] = 'io_stream'
 config['Model']['Strategy'] = 'Resource'
 
 # Set reuse factor to 32 for the entire model
-config['Model']['ReuseFactor'] = 8 # changed from 32 to 8, crashed with 34
+config['Model']['ReuseFactor'] = 8 # changed from 32 to 8, crashed with 32
 
 # Specify bit precision model-wide
 config['Model']['Precision'] = 'ap_fixed<8,3>'
@@ -67,7 +67,7 @@ config['Model']['Precision'] = 'ap_fixed<8,3>'
 # Print the modified configuration
 print("-----------------------------------")
 print("Configuration")
-print(config)  # Use print_dict(config) if you prefer a more structured output
+print(config)
 print("-----------------------------------")
 
 # Convert the PyTorch model to HLS model with the specified configuration
