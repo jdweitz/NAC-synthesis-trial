@@ -79,7 +79,8 @@ model.load_state_dict(torch.load(model_weights_path, map_location=torch.device('
 model.eval()
 
 # Generate initial configuration
-config = hls4ml.utils.config_from_pytorch_model(model, granularity='model')
+config = hls4ml.utils.config_from_pytorch_model(model, granularity='model', inputs_channel_last=False, transpose_outputs=False)
+# config = hls4ml.utils.config_from_pytorch_model(model, granularity='model')
 
 # Set io_type to 'io_stream' for the entire model
 config['Model']['IOType'] = 'io_stream'
@@ -88,7 +89,7 @@ config['Model']['IOType'] = 'io_stream'
 config['Model']['Strategy'] = 'Resource'
 
 # Set reuse factor to 32 for the entire model
-config['Model']['ReuseFactor'] = 8 # changed from 32 to 4, crashed with 34
+config['Model']['ReuseFactor'] = 8 # changed from 32 to 4, crashed with 8
 
 # Specify bit precision model-wide
 config['Model']['Precision'] = 'ap_fixed<8,3>'
@@ -102,9 +103,9 @@ print("-----------------------------------")
 # Convert the PyTorch model to HLS model with the specified configuration
 hls_model = hls4ml.converters.convert_from_pytorch_model(
     model,
-    input_shape=(None, 1, 11, 11),
+    input_shape=(None, 11, 11, 1), # input_shape=(None, 1, 11, 11), # where 2048 if the batch size
     hls_config=config,
-    output_dir='model/hls4ml_prj',
+    output_dir='torch_model/hls4ml_prj',
     part='xcu250-figd2104-2L-e'
 )
 
