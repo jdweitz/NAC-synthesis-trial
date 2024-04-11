@@ -78,7 +78,7 @@ model.load_state_dict(torch.load(model_weights_path, map_location=torch.device('
 
 model.eval()
 
-# Generate initial configuration
+# Generate initial configuration, altered here
 config = hls4ml.utils.config_from_pytorch_model(model, granularity='model', inputs_channel_last=False, transpose_outputs=False)
 # config = hls4ml.utils.config_from_pytorch_model(model, granularity='model')
 
